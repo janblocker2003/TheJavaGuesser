@@ -18,19 +18,14 @@ public NumberGuesser(){
   //constrcutor 
   boolean keepGoing = true;
   while(keepGoing){
-
     String response = menu();
-
     if (response.equals("1")){
         System.out.println(humanGuesser());
-
     } else if (response.equals("2")){
         System.out.println(computerGuesser());
-
     } else if (response.equals("0")){
         System.out.println("Goodbye!");
         keepGoing = false;
-
     } else {
         System.out.println("Sorry. I didn't understand");
     } // end if
@@ -50,18 +45,26 @@ public NumberGuesser(){
 
 public void humanGuesser(){
   boolean keepGoing = true;
-  make an integer -> correct (rand generated)
+  int turns = 1;
+  Random random = Random()
+  int correct = random.nextInt(100) + 1;
   while keepGoing == true; {
         ask user for a number and put into -> new String guess
-        if guess < correct {
+        System.out.println (turns + "Please enter a number: ");
+        String guess = input.nextLine();
+        intGuess = StringtoInt(guess)
+        if intGuess < correct {
             tell user: System.out.println ("Too low");
         } // end if
-        elif guess > correct{
+        elif intGuess > correct {
             tell user: System.out.println ("Too high");
         } //end if
-        else {
+        elif intGuess == correct {
             tell user: System.out.println ("You guessed correct!");
             set keepGoing to False;
+        } // end else if
+        else {
+            tell user: System.out.println ("The number has to be between 1-100!")
         } //end else
   } // end while loop
 } //end humanGuesser method
@@ -70,19 +73,58 @@ public void computerGuesser(){
   boolean keepGoing = true;
   int turns = 1;
   int compGuess = 50;
+  int changeBy = 25
   while keepGoing == true{
     tell user: System.out.println (turns + ") I guess" compGuess);
     tell user: System.out.println ("Too (H)igh, too (L)ow, or (C)orrect? ");
     String feedback = input.nextLine();
     feedback = feedback.toUpperCase();
-    if feedback.equals("H)
-  
-    
-    
-
+    if feedback.equals("H") {
+      compGuess = compGuess - changeBy
+      changeBy = changeBy / 2
+    } // end if
+    else if feedback.equals("L"){
+      compGuess = compGuess + changeBy
+      changeBy = changeBy / 2
+    } // end else if
+    else if feedback.equals("C") {
+      tell user: System.out.println ("You guessed correct!");
+      keepGoing = false;
+    } //end else if
+    else {
+      System.out.println("Sorry. I didn't understand");
+    } // end else
 
 } //end computer guesser
+
+public int StringtoInt(String guess){
+  String guess = guess
+  try {
+    int intGuess = Integer.parseInt(guess);
+  } // end try
+  catch (NumberFormatException e) {
+    System.out.println("That is not a number!");
+  return intGuess;
+  } // end StringtoInt
+
 ```
+## Make File
+
+```
+NumberGuesser.class: NumberGuesser.java
+	javac -g NumberGuesser.java
+
+run: NumberGuesser.class
+	java NumberGuesser
+
+clean:
+	rm *.class
+
+debug:
+	jdb NumberGuesser
+
+```
+
 
 ## Previous coding under C (for reference):
 ```
